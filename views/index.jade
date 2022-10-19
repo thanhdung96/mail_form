@@ -2,4 +2,21 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
+  form(action = "/api", method = "POST")
+    div
+      label(for = "fullName") Fullname:
+      input(name = "fullName" value = "Hi")
+    br
+    div
+      label(for = "phone") Phone Number:
+      input(name = "phone" value = "Hi")
+    br
+    div
+      label(for = "email") Email:
+      input(name = "email" value = "Hi")
+    br
+    div
+      label(for = "message") Message:
+      input(name = "message" value = "Hi")
+    br
+    button(type = "submit") Send Now

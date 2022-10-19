@@ -2,8 +2,9 @@ var express = require('express');
 var router = express.Router();
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-    res.render('index', { title: 'Mail Form API' });
+router.post('/', function(req, res, next) {
+    console.log(req.body);
+    res.render('index', { title: 'hello' });
 });
 
 module.exports = router;
