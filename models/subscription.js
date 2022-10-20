@@ -1,4 +1,4 @@
-var mongoose = require('mongoose');
+var mongoose = require('../helpers/connector');
 
 var subscriptionSchema = mongoose.Schema({
    fullName: String,
