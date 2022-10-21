@@ -6,6 +6,10 @@ let connectionString = 'mongodb+srv://MONGO_USER:MONGO_PASSWORD@MONGO_ADDRESS/?r
 connectionString = connectionString.replace('MONGO_USER', process.env.MONGO_USER);
 connectionString = connectionString.replace('MONGO_PASSWORD', process.env.MONGO_PASSWORD);
 connectionString = connectionString.replace('MONGO_ADDRESS', process.env.MONGO_ADDRESS);
-mongooseConnector.connect(connectionString);
+
+// if the connector is not connected
+if(mongooseConnector.connection.readyState != 1) {
+    mongooseConnector.connect(connectionString);
+}
 
 module.exports = mongooseConnector;
