@@ -1,0 +1,15 @@
+org: thanhdung96
+app: aws-node-express-api
+service: aws-node-express-api
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  region: ap-southeast-1
+  runtime: nodejs14.x
+
+functions:
+  api:
+    handler: app.handler
+    events:
+      - httpApi: '*'
