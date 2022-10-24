@@ -9,6 +9,7 @@ var apiRouter = require('./routes/api');
 require('dotenv').config();
 
 var app = express();
+const serverless = require("serverless-http");
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -39,4 +40,6 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-module.exports = app;
+// convert to serverless app
+// module.exports = app;
+module.exports.handler = serverless(app);
