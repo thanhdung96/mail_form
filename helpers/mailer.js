@@ -18,6 +18,9 @@ let transporter = nodemailer.createTransport({
 });
 
 const sendMail = async (subscription) => {
+    // convert timestamp to hcm timezone
+    subscription.createdAt = new Date(subscription.createdAt).toLocaleString('en-us', {timezone: 'Pacific/Hanoi'});
+
     // manually render jade template without response object
     let pathToTemplate = path.resolve(__dirname, '../views/') + '/mail_subscription.jade';
     let template = fs.readFileSync(pathToTemplate, 'utf8');

@@ -13,9 +13,7 @@ router.post('/', async function(req, res, next) {
         message: data.message,
     });
 
-    await sendMail(subscription);
-
-    subscription.save(function (err, Subscription) {
+    await subscription.save(function (err, Subscription) {
         if(err) {
             res.render(
                        'error',
@@ -25,9 +23,10 @@ router.post('/', async function(req, res, next) {
                         }
             );
         } else {
+            sendMail(subscription);
             res.redirect('/');
         }
-    })
+    });
 });
 
 router.get('/get', async function(req, res) {
