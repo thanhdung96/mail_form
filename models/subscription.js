@@ -2,12 +2,11 @@ var mongoose = require('../helpers/connector');
 
 var subscriptionSchema = mongoose.Schema(
    {
-      jobId: String,
-      fullName: String,
+      company: String,
+      name: String,
       email: String,
       phone: String,
-      message: String,
-      file: String
+      messages: String
    },
    {
       timestamps: true
