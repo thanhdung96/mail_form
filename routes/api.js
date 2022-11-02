@@ -3,37 +3,45 @@ var router = express.Router();
 var Subscription = require('../models/subscription');
 var sendMail = require('../helpers/mailer');
 
-router.post('/', async function(req, res, next) {
+router.post('/jobs', async function(req, res, next) {
     let data = req.body;
+    console.log(data);
     let subscription = new Subscription({
-        jobId: null,
-        fullName: data.fullName,
+        company: data.company,
+        name: data.name,
         email: data.email,
         phone: data.phone,
-        message: data.message,
+        messages: data.messages,
     });
 
     await subscription.save(function (err, Subscription) {
         if(err) {
-            res.render(
-                       'error',
-                        {
-                            message: "Something went wrong",
-                            error: err
-                        }
-            );
+            res.json({
+                status: 500,
+                message: 'Something went wrong when saving subscription.'
+            });
         } else {
-            sendMail(subscription);
-            res.redirect('/');
+            try {
+                sendMail(subscription);
+                res.json({
+                    status: 200,
+                    message: 'Email sent successfully.'
+                });
+            } catch (error) {
+                res.json({
+                    status: 500,
+                    message: 'Something went wrong when sending email.'
+                });
+            }
         }
     });
 });
 
-router.get('/get', async function(req, res) {
+router.get('/jobs/get', async function(req, res, next) {
     let lstSubscriptions = await Subscription.find();
-    
+    console.log(lstSubscriptions);
     res.json({
-        subscriptions: lstSubscriptions
+        jobs: lstSubscriptions
     });
 });
 
