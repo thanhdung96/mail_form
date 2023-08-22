@@ -17,21 +17,14 @@ let transporter = nodemailer.createTransport({
     }
 });
 
-const sendMail = async (subscription) => {
-    // convert timestamp to hcm timezone
-    subscription.createdAt = new Date(subscription.createdAt).toLocaleString('en-us', {timezone: 'Pacific/Hanoi'});
-
-    // manually render jade template without response object
-    let pathToTemplate = path.resolve(__dirname, '../views/') + '/mail_subscription.jade';
-    let template = fs.readFileSync(pathToTemplate, 'utf8');
-    let jadeFn = jade.compile(template, { filename: pathToTemplate, pretty: true });
-    let renderedTemplate = jadeFn({subscription: subscription});
+const sendMailClient = async (subscription) => {
+    let renderedTemplate = await renderEmailTemplate('mail_subscription.jade', subscription);
 
     try{
-        let mailStatus = await transporter.sendMail({
+        await transporter.sendMail({
             from: process.env.EMAIL_ADDRESS, // sender address
             to: subscription.email,
-            subject: 'A subscription from ' + subscription.fullName, // Subject line
+            subject: 'Cảm ơn Anh/Chị đã liên hệ với MATI', // Subject line
             html: renderedTemplate,
         });
     } catch (error) {
@@ -41,18 +34,32 @@ const sendMail = async (subscription) => {
     };
 };
 
-module.exports = sendMail;
+const sendMailAdmin = async (subscription) => {
+    let renderedTemplate =  await renderEmailTemplate('mail_admin_noti.jade', subscription);
 
-// sample sending email
-// const mailObj = {
-//     from: "hello@schadokar.dev",
-//     recipients: ["me@schadokar.dev"],
-//     subject: "Sending email by nodejs",
-//     html: {
-//          path: path.resolve(__dirname, "../template/mail.html"),
-// },
-//   };
-  
-//   sendEmail(mailObj).then((res) => {
-//     console.log(res);
-//   });
+    try{
+        await transporter.sendMail({
+            from: process.env.EMAIL_ADDRESS, // sender address
+            to: process.env.ADMIN_EMAIL,
+            subject: 'Thông báo: Khách hàng mới đã liên hệ qua HRM MATI', // Subject line
+            html: renderedTemplate,
+        });
+    } catch (error) {
+        throw new Error(
+            `Something went wrong in the sendmail method. Error: ${error.message}`
+        );
+    };
+
+}
+
+const renderEmailTemplate = async (templateName, subscription) => {
+    // manually render jade template without response object
+    let pathToTemplate = path.resolve(__dirname, '../views/') + '/' + templateName;
+    let template = fs.readFileSync(pathToTemplate, 'utf8');
+    let jadeFn = jade.compile(template, { filename: pathToTemplate, pretty: true });
+    let renderedTemplate = jadeFn({ subscription: subscription, hrm_address: process.env.HRM_ADDRESS });
+    
+    return renderedTemplate;
+}
+
+module.exports = { sendMailClient, sendMailAdmin };
