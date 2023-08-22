@@ -2,8 +2,28 @@ html
   head
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
-    p= subscription.fullName
-    p= subscription.email
-    p= subscription.phone
-    p= subscription.message
-    p= subscription.createdAt
+    p Kinh chào Anh/Chị #{subscription.name},
+    br
+    p.
+      <b>Đội ngũ MATI Khai Trí</b> chân thành cảm ơn Anh/Chị thông qua yêu cầu hỗ trợ và điền thông tin liên hệ trên <b>trang thông tin của chúng tôi </b>
+      <a href=`#{hrm_address}`>(#{hrm_address})</a></b>
+    br
+    p <b>Quý <u>Anh/Chị</u> đã để lại thông tin liên hệ vào lúc</b> <span style="text-transform: capitalize">#{subscription.submissionDate}</span>
+    p <span style="padding-left: 20px;"><b>Họ và tên:</b> #{subscription.name}</span>
+    p <span style="padding-left: 20px;"><b>Địa chỉ email:</b> #{subscription.email}</span>
+    p <span style="padding-left: 20px;"><b>Số điện thoại:</b> #{subscription.phone}</span>
+    p <span style="padding-left: 20px;"><b>Tên công ty:</b> #{subscription.company}</span>
+    p <span style="padding-left: 20px;"><b>Với lời nhắn:</b></span>
+    p <div style="padding-left: 40px;"><i>#{subscription.messages}</i></div>
+    br
+    p Đội ngũ chuyên viên của chúng tôi sẽ tiến hành xem xét và phản hồi lại Anh/Chị trong thời gian sớm nhất có thể.
+    p Nếu Anh/Chị có bất kỳ câu hỏi hoặc yêu cầu cụ thể, vui lòng liên hệ với MATI qua địa chỉ email này hoặc số điện thoại dưới đây:
+    p <span style="padding-left: 20px;"><b>Email:</b> <a href="mailto:contact@mati.com.vn">contact@mati.com.vn</a></span>
+    p <span style="padding-left: 20px;"><b>Điện thoại:</b> <a href="tel:+84792908059">(+84) 79 29 08 059</a></span>
+    br
+    p Chúng tôi cam kết cung cấp dịch vụ chất lượng và phản hồi nhanh chóng đối với mọi yêu cầu của Anh/Chị. Rất mong được hợp tác và hỗ trợ giải quyết mọi vấn đề hoặc thắc mắc Anh/Chị đang có.
+    br
+    p Một lần nữa, xin chân thành cảm ơn vì đã lựa chọn MATI là đối tác. Rất hân hạnh được hợp tác cùng Anh/Chị.
+    br
+    p Trân trọng,
+    p Đội ngũ MATI Khai Trí

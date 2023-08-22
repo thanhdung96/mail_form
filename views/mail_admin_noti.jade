@@ -1,0 +1,33 @@
+html
+  head
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+    p Chào Admin trang #{hrm_address},
+    br
+    p Một khách hàng tiềm năng vừa điền thông tin liên hệ trên trang web #{hrm_address}. 
+    p Thời điểm liên hệ: <span style="text-transform: capitalize">#{subscription.submissionDate}</span>
+    br
+    p Thông tin khách hàng:
+    p <span style="padding-left: 20px;"><b>Họ và tên:</b> #{subscription.name}</span>
+    p <span style="padding-left: 20px;"><b>Địa chỉ email:</b> #{subscription.email}</span>
+    p <span style="padding-left: 20px;"><b>Số điện thoại:</b> #{subscription.phone}</span>
+    p <span style="padding-left: 20px;"><b>Tên công ty:</b> #{subscription.company}</span>
+    p <span style="padding-left: 20px;"><b>Với lời nhắn:</b></span>
+    p <div style="padding-left: 40px;"><i>#{subscription.messages}</i></div>
+    br
+    p Vui lòng xem xét thông tin và tiến hành xử lý một cách thích hợp. Khuyến nghị thực hiện xử lý thông tin theo các bước dưới đây:
+    ol 
+        li Phản hồi nhanh chóng: liên hệ với khách hàng  trong thời gian sớm nhất có thể để xác nhận việc chúng ta đã nhận được thông tin và sẵn sàng hỗ trợ họ.
+        li Phân loại yêu cầu: Xác định loại yêu cầu mà khách hàng đang có. Nếu yêu cầu cụ thể, hãy đảm bảo chúng ta sẵn sàng cung cấp thông tin hoặc hỗ trợ tương ứng.
+        li Gán người phụ trách: Xem xét và quyết định người phù hợp nhất trong đội để tiếp tục liên hệ với khách hàng. 
+        li Theo dõi: Theo dõi quá trình xử lý yêu cầu của khách hàng và đảm bảo rằng họ nhận được hỗ trợ toàn diện và chất lượng.
+    br
+    p Nếu có bất kỳ câu hỏi hoặc cần hỗ trợ thêm, liên hệ đến những bộ phận liên quan, hoặc qua email và số điện thoại dưới đây:
+    p <span style="padding-left: 20px;">Email: <a href="mailto:contact@mati.com.vn">contact@mati.com.vn</a></span>
+    p <span style="padding-left: 20px;">Điện thoại: <a href="tel:+84792908059">(+84) 79 29 08 059</a></span>
+    br
+    p Đảm bảo khách hàng được trải nghiệm những dịch vụ tốt nhất từ MATI. 
+    br
+    p Trân trọng,
+    p Trang #{hrm_address}
+    p MATI Khai Trí

@@ -10,6 +10,9 @@ require('dotenv').config();
 var app = express();
 const serverless = require("serverless-http");
 
+// set timezone to Vietnam
+process.env.TZ = 'Pacific/Hanoi';
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
